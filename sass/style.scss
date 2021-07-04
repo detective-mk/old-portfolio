@@ -1,0 +1,469 @@
+// ===========================
+// 変数
+// ===========================
+$font-color_default: #333;
+$color_main: #81C7D4;
+$color_accent: #7EE0B8;
+$color_accent2: #83C0EB;
+$color_gray: #f2f2f2;
+
+$site-width: 980px;
+
+$font-family_main: 'Cardo', serif;
+
+$font-size_s: 12px;
+$font-size_m: 14px;
+$font-size_default: 16px;
+$font-size_l: 18px;
+$font-size_xl: 24px;
+$font-size_xxl: 30px;
+$font-size_3l: 36px;
+
+$space_s: 8px;
+$space_m: 16px;
+$space_l: 24px;
+$space_xl: 32px;
+$space_xxl: 40px;
+
+$breakpoints: (
+  'sm': 'screen and (max-width: 414px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 1000px)',
+  'xl': 'screen and (max-width: 1200px)',
+) !default;
+
+// ==============================
+// mixin
+// ==============================
+
+@mixin mq($breakpoint: sm) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+// =============================
+// BASE
+// =============================
+html, body {
+  width: 100%;
+  color: $font-color_default;
+  font-size: $font-size_default;
+  line-height: 1.6;
+  font-family: "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  text-size-adjust: 100%;
+  letter-spacing: 0.1em;
+}
+
+p, a {
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $font-color_default;
+  text-decoration: none;
+  transition: .3s;
+  &:hover,
+  &:focus {
+    color: $color_main;
+    transition: .3s;
+  }
+}
+
+img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+// =============================
+// utility
+// =============================
+.bg-blue {
+  background: $color_main;
+}
+
+.link {
+  border-bottom: 1px solid;
+}
+
+// =============================
+// header
+// =============================
+.header {
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  background: rgba(255, 255, 255, .9);
+  @include mq() {
+    height: 60px;
+  }
+  &-inner {
+    width: $site-width;
+    height: inherit;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include mq() {
+      width: 100%;
+      padding: 0 $space_m;
+    }
+    .logo {
+      font-size: $font-size_xxl;
+      font-family: $font-family_main;
+      font-weight: bold;
+      @include mq() {
+        font-size: $font-size_l;
+      }
+    }
+    .nav-menu {
+      @include mq() {
+        transition: all .5s;
+        position: absolute;
+        top: 0;
+        right: -100%;
+        background: rgba(255, 255, 255, .9);
+        height: 100vh;
+        width: 100%;
+        z-index: 2;
+        &.active {
+          transform: translateX(-100%);
+        }
+      }
+    }
+    .menu {
+      display: flex;
+      &-item {
+        margin-right: $space_l;
+        font-family: $font-family_main;
+        font-size: $font-size_l;
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+        transition: .5s;
+        position: relative;
+        &::after {
+          width: 0;
+          position: absolute;
+          bottom: 0;
+          content: "";
+          left: 50%;
+          height: 2px;
+          background: $color_main;
+          transition: .3s;
+          transform: translateX(-50%);
+        }
+        &:hover::after {
+            width: 100%;
+        }
+        @include mq() {
+          margin-bottom: $space_xxl;
+          font-size: $font-size_xl;
+        }
+      }
+      @include mq() {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 70px;
+      }
+    }
+  }
+}
+
+// =============================
+// menu
+// =============================
+.menu-trigger {
+  display: none;
+  @include mq() {
+    display: block;
+    z-index: 2;
+    position: relative;
+    width: 30px;
+    height: 24px;
+    span {
+      background: #777;
+      width: 30px;
+      height: 3px;
+      display: block;
+      position: absolute;
+      transition: all .5s;
+      &:nth-of-type(1) {
+        top: 0;
+      }
+      &:nth-of-type(2) {
+        top: 10px;
+      }
+      &:nth-of-type(3) {
+        bottom: 0;
+      }
+    }
+    &.active {
+      span {
+        &:nth-of-type(1) {
+          transform: translateY(11px) rotate(45deg);
+        }
+        &:nth-last-of-type(2) {
+          opacity: 0;
+        }
+        &:nth-of-type(3) {
+          transform: translateY(-11px) rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+
+// =============================
+// container
+// =============================
+.container {
+  width: $site-width;
+  margin: 0 auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  &-title {
+    text-align: center;
+    font-family: $font-family_main;
+    font-size: $font-size_xxl;
+    margin-bottom: $space_xl;
+    @include mq() {
+      padding-top: 16px;
+    }
+  }
+  @include mq() {
+    width: 100%;
+    padding: 0 $space_m $space_xxl;
+  }
+}
+
+// =============================
+// main-visual
+// =============================
+.main-visual {
+  background-image: url('../img/hero.jpg');
+  height: 700px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  @include mq() {
+    height: 400px;
+  }
+}
+
+// =============================
+// profile
+// =============================
+table {
+  border: 3px solid $color_accent;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+tr, td {
+  border-bottom: 1px dashed $color_accent;
+  padding: $space_s;
+}
+
+// =============================
+// skill
+// =============================
+.skill {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  &-item {
+    margin-bottom: $space_l;
+  }
+  &-item__img {
+    font-size: 46px;
+    background: #fff;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-item__txt {
+    text-align: center;
+    margin-top: $space_m;
+  }
+}
+
+// =============================
+// works
+// =============================
+.cardArea {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card-container {
+  width: 32%;
+  @include mq() {
+    width: 100%;
+    margin-bottom: $space_xl;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.card {
+  // width: calc(33% - 16px); // 4個以上並んだ場合
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  box-shadow: 0 2px 5px #ccc;
+  border-radius: 4px;
+  width: 250px;
+  transition: all .5s;
+    @include mq() {
+      width: 100%;
+  }
+  &__title {
+    font-size: $font-size_l;
+    text-align: center;
+    padding: $space_s 0;
+  }
+  &__img {
+    object-fit: cover;
+  }
+  // &:nth-of-type(3n+3) { // 4個以上並んだ場合
+  //   margin-right: 0;
+  // }
+}
+
+.card__mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.6);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  transition: all .6s ease;
+}
+
+.card__desc {
+  font-size: $font-size_m;
+  width: 80%;
+  color: #fff;
+  span {
+    display: block;
+    margin-top: 16px;
+  }
+}
+
+.card .card__mask {
+  opacity: 0;
+}
+
+.card:hover .card__mask {
+  opacity: 0.8;
+  transition: all .5s;
+}
+
+.card:hover .card__desc {
+  animation-name: slideIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+// =============================
+// contact
+// =============================
+.contact-sec {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-inner {
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: $space_l;
+}
+
+.email-icon {
+  margin-right: $space_m;
+  @include mq() {
+    display: inline-block;
+    margin-bottom: $space_m;
+    font-size: $font-size_xl;
+  }
+}
+
+// =============================
+// footer
+// =============================
+.footer {
+  height: 80px;
+  background: #333;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mq() {
+    height: 60px;
+  }
+}
+
+// =============================
+// animation
+// =============================
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(40%);
+  }
+}
+
+// =============================
+// worksページ
+// =============================
+.works > .container {
+  padding-top: 100px;
+}
+
+.works__outputTitle {
+  text-align: center;
+  font-size: $font-size_xl;
+  margin-bottom: 32px;
+  &::after {
+    content: "";
+    display: block;
+    margin: 12px auto 0;
+    width: 60px;
+    height: 2px;
+    background: $color_main;
+  }
+}
+
+.works__main-visual {
+  width: 100%;
+  box-shadow: 0 2px 5px #ccc;
+  margin-bottom: 40px;
+}
+.works__title {
+  font-weight: 600;
+  font-size: $font-size_l;
+  margin-bottom: 16px;
+  span {
+    margin-left: 8px;
+  }
+}
+
+.works__desc {
+  margin-bottom: 32px;
+  letter-spacing: 0;
+  span {
+    margin-left: 8px;
+  }
+}

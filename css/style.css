@@ -19,7 +19,7 @@ a {
   transition: .3s;
 }
 
-a:hover {
+a:hover, a:focus {
   color: #81C7D4;
   transition: .3s;
 }
@@ -31,6 +31,10 @@ img {
 
 .bg-blue {
   background: #81C7D4;
+}
+
+.link {
+  border-bottom: 1px solid;
 }
 
 .header {
@@ -177,15 +181,21 @@ img {
 .container {
   width: 980px;
   margin: 0 auto;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .container-title {
   text-align: center;
   font-family: "Cardo", serif;
   font-size: 30px;
-  padding: 32px 0;
+  margin-bottom: 32px;
+}
+
+@media screen and (max-width: 414px) {
+  .container-title {
+    padding-top: 16px;
+  }
 }
 
 @media screen and (max-width: 414px) {
@@ -201,6 +211,12 @@ img {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+}
+
+@media screen and (max-width: 414px) {
+  .main-visual {
+    height: 400px;
+  }
 }
 
 table {
@@ -253,15 +269,21 @@ tr, td {
 @media screen and (max-width: 414px) {
   .card-container {
     width: 100%;
+    margin-bottom: 32px;
+  }
+  .card-container:last-child {
+    margin-bottom: 0;
   }
 }
 
 .card {
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
+  position: relative;
   box-shadow: 0 2px 5px #ccc;
   border-radius: 4px;
-  transition: .5s;
+  width: 250px;
+  transition: all .5s;
 }
 
 @media screen and (max-width: 414px) {
@@ -271,25 +293,52 @@ tr, td {
 }
 
 .card__title {
+  font-size: 18px;
   text-align: center;
   padding: 8px 0;
 }
 
+.card__img {
+  object-fit: cover;
+}
+
+.card__mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  transition: all .6s ease;
+}
+
 .card__desc {
-  padding: 16px;
+  font-size: 14px;
+  width: 80%;
+  color: #fff;
 }
 
-.card:hover {
+.card__desc span {
+  display: block;
+  margin-top: 16px;
+}
+
+.card .card__mask {
+  opacity: 0;
+}
+
+.card:hover .card__mask {
   opacity: 0.8;
-  transition: .5s;
-  color: #333;
+  transition: all .5s;
 }
 
-.card-sec__icon {
-  font-size: 30px;
-  display: inline-block;
-  text-align: center;
-  margin-bottom: 32px;
+.card:hover .card__desc {
+  animation-name: slideIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
 }
 
 .contact-sec {
@@ -324,4 +373,65 @@ tr, td {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 414px) {
+  .footer {
+    height: 60px;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(40%);
+  }
+}
+
+.works > .container {
+  padding-top: 100px;
+}
+
+.works__outputTitle {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 32px;
+}
+
+.works__outputTitle::after {
+  content: "";
+  display: block;
+  margin: 12px auto 0;
+  width: 60px;
+  height: 2px;
+  background: #81C7D4;
+}
+
+.works__main-visual {
+  width: 100%;
+  box-shadow: 0 2px 5px #ccc;
+  margin-bottom: 40px;
+}
+
+.works__title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.works__title span {
+  margin-left: 8px;
+}
+
+.works__desc {
+  margin-bottom: 32px;
+  letter-spacing: 0;
+}
+
+.works__desc span {
+  margin-left: 8px;
 }
