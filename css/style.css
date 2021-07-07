@@ -37,6 +37,18 @@ img {
   border-bottom: 1px solid;
 }
 
+.anchorPoint {
+  margin-top: -80px;
+  padding-top: 80px;
+}
+
+@media screen and (max-width: 414px) {
+  .anchorPoint {
+    margin-top: -60px;
+    padding-top: 60px;
+  }
+}
+
 .header {
   width: 100%;
   height: 80px;
@@ -87,7 +99,6 @@ img {
     background: rgba(255, 255, 255, 0.9);
     height: 100vh;
     width: 100%;
-    z-index: 2;
   }
   .header-inner .nav-menu.active {
     transform: translateX(-100%);
@@ -134,7 +145,7 @@ img {
   .header-inner .menu {
     flex-direction: column;
     align-items: center;
-    padding-top: 70px;
+    padding-top: 100px;
   }
 }
 
@@ -145,7 +156,7 @@ img {
 @media screen and (max-width: 414px) {
   .menu-trigger {
     display: block;
-    z-index: 2;
+    z-index: 10;
     position: relative;
     width: 30px;
     height: 24px;
@@ -279,16 +290,17 @@ tr, td {
 .card {
   cursor: pointer;
   display: flex;
-  position: relative;
   box-shadow: 0 2px 5px #ccc;
   border-radius: 4px;
   width: 250px;
   transition: all .5s;
+  position: relative;
 }
 
 @media screen and (max-width: 414px) {
   .card {
     width: 100%;
+    position: static;
   }
 }
 
@@ -300,6 +312,7 @@ tr, td {
 
 .card__img {
   object-fit: cover;
+  z-index: -1;
 }
 
 .card__mask {
@@ -309,7 +322,6 @@ tr, td {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 2;
   display: flex;
   justify-content: center;
   transition: all .6s ease;

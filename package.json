@@ -1,7 +1,6 @@
 {
   "name": "practice01",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +9,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/detective-mk/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/detective-mk/portfolio/issues"
+  },
+  "homepage": "https://github.com/detective-mk/portfolio#readme",
+  "description": "",
+  "devDependencies": {
+    "gulp": "^4.0.2"
   }
 }
