@@ -271,7 +271,7 @@ tr, td {
 .cardArea {
   display: flex;
   flex-wrap: wrap;
-  gap: 115px;
+  gap: 80px;
 }
 
 @media screen and (max-width: 414px) {
@@ -280,26 +280,12 @@ tr, td {
   }
 }
 
-.card-container {
-  width: 32%;
-}
-
-@media screen and (max-width: 414px) {
-  .card-container {
-    width: 100%;
-    margin-bottom: 32px;
-  }
-  .card-container:last-child {
-    margin-bottom: 0;
-  }
-}
-
 .card {
   cursor: pointer;
   display: flex;
   box-shadow: 0 2px 5px #ccc;
   border-radius: 4px;
-  width: 250px;
+  width: calc((100% - 80px * 2) / 3);
   height: 250px;
   transition: all .5s;
 }
@@ -309,6 +295,10 @@ tr, td {
     width: 100%;
     position: static;
   }
+}
+
+.card__link {
+  width: 100%;
 }
 
 .card__inner {
@@ -418,17 +408,17 @@ tr, td {
   }
 }
 
-.works > .container {
+.output > .container {
   padding-top: 100px;
 }
 
-.works__outputTitle {
+.output__outputTitle {
   text-align: center;
   font-size: 24px;
   margin-bottom: 32px;
 }
 
-.works__outputTitle::after {
+.output__outputTitle::after {
   content: "";
   display: block;
   margin: 12px auto 0;
@@ -437,27 +427,27 @@ tr, td {
   background: #81C7D4;
 }
 
-.works__main-visual {
+.output__main-visual {
   width: 100%;
   box-shadow: 0 2px 5px #ccc;
   margin-bottom: 40px;
 }
 
-.works__title {
+.output__title {
   font-weight: 600;
   font-size: 18px;
   margin-bottom: 16px;
 }
 
-.works__title span {
+.output__title span {
   margin-left: 8px;
 }
 
-.works__desc {
+.output__desc {
   margin-bottom: 32px;
   letter-spacing: 0;
 }
 
-.works__desc span {
+.output__desc span {
   margin-left: 8px;
 }

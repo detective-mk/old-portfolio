@@ -298,40 +298,31 @@ tr, td {
 }
 
 // =============================
-// works
+// output
 // =============================
 .cardArea {
   display: flex;
   flex-wrap: wrap;
-  gap: 115px;
+  gap: 80px;
   @include mq() {
     row-gap: 40px;
   }
 }
 
-.card-container {
-  width: 32%;
-  @include mq() {
-    width: 100%;
-    margin-bottom: $space_xl;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
 .card {
-  // width: calc(33% - 16px); // 4個以上並んだ場合
   cursor: pointer;
   display: flex;
   box-shadow: 0 2px 5px #ccc;
   border-radius: 4px;
-  width: 250px;
+  width: calc((100% - 80px * 2) / 3);
   height: 250px;
   transition: all .5s;
     @include mq() {
       width: 100%;
       position: static;
+  }
+  &__link {
+    width: 100%;
   }
   &__inner {
     position: relative;
@@ -440,13 +431,13 @@ tr, td {
 }
 
 // =============================
-// worksページ
+// outputページ
 // =============================
-.works > .container {
+.output > .container {
   padding-top: 100px;
 }
 
-.works__outputTitle {
+.output__outputTitle {
   text-align: center;
   font-size: $font-size_xl;
   margin-bottom: 32px;
@@ -460,12 +451,12 @@ tr, td {
   }
 }
 
-.works__main-visual {
+.output__main-visual {
   width: 100%;
   box-shadow: 0 2px 5px #ccc;
   margin-bottom: 40px;
 }
-.works__title {
+.output__title {
   font-weight: 600;
   font-size: $font-size_l;
   margin-bottom: 16px;
@@ -474,7 +465,7 @@ tr, td {
   }
 }
 
-.works__desc {
+.output__desc {
   margin-bottom: 32px;
   letter-spacing: 0;
   span {
