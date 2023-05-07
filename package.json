@@ -1,11 +1,11 @@
 {
-  "name": "practice01",
+  "name": "portfolio",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run server",
+    "server": "browser-sync start --config bs-config.js"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -15,12 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/detective-mk/portfolio.git"
   },
-  "bugs": {
-    "url": "https://github.com/detective-mk/portfolio/issues"
-  },
-  "homepage": "https://github.com/detective-mk/portfolio#readme",
   "description": "",
   "devDependencies": {
+    "browser-sync": "^2.27.10",
     "gulp": "^4.0.2"
   }
 }
